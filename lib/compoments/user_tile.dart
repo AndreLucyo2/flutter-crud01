@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_crud_1/models/user.dart';
+import 'package:flutter_crud_1/provider/users.dart';
 import 'package:flutter_crud_1/routes/app_routes.dart';
+import 'package:provider/provider.dart';
 
 class UserTile extends StatelessWidget {
   final User user;
@@ -27,7 +29,9 @@ class UserTile extends StatelessWidget {
           child: Row(
             children: <Widget>[
               IconButton(
+                //---------------------------------------
                 //Botão editar
+                //---------------------------------------
                 icon: Icon(Icons.edit),
                 color: Colors.blue,
                 onPressed: () {
@@ -39,11 +43,49 @@ class UserTile extends StatelessWidget {
                   );
                 },
               ),
+              //---------------------------------------
               //Botão deletar
+              //---------------------------------------
               IconButton(
                 icon: Icon(Icons.delete),
                 color: Colors.red,
-                onPressed: () {},
+                onPressed: () {
+                  //-------------------------------------------------------------
+                  //Mensagem de Confirmação se quer remover:
+                  //-------------------------------------------------------------
+                  showDialog(
+                    context: context,
+                    builder: (ctx) => AlertDialog(
+                      title: Text('Excluir Usuário?'),
+                      content: Text('Confirmar?'),
+                      actions: <Widget>[
+                        //Botão Não!------------------
+                        FlatButton(
+                          child: Text('Não'),
+                          onPressed: () {
+                            //Fechar o dialog:e retorna FALSE
+                            Navigator.of(context).pop(false);
+                          },
+                        ),
+                        //Botão Sim!------------------
+                        FlatButton(
+                          child: Text('Sim'),
+                          onPressed: () {
+                            //Fecha o dialog: e retorna TRUE
+                            Navigator.of(context).pop(true);
+                          },
+                        ),
+                      ],
+                    ),
+                    //Quando fecahr a modal retorno true ou false:
+                  ).then((confirmou) {
+                    //conforme o retorno do Dialog modal executa a ação:
+                    if (confirmou) {
+                      //Provider para remover:
+                      Provider.of<Users>(context).remove(user);
+                    }
+                  });
+                },
               ),
             ],
           ),

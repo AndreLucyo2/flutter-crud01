@@ -23,7 +23,7 @@ class Users with ChangeNotifier {
   }
 
   //Metodo save: TANTO INCLUI QUANTO ALTERA
-  void put(User user) {
+  void putSave(User user) {
     if (user == null) {
       return;
     }
@@ -38,18 +38,18 @@ class Users with ChangeNotifier {
       //=========================================
       //ADICIONAR: teste do MAP de forma fixa:
       //=========================================
-      //Gerar ida Randomico:
+      //Gerar id Randomico:
       final id = Random().nextDouble().toString();
       //putIfAbsent = insere caso na exista
       _itens.putIfAbsent(
-          id,
-          () => User(
-                id: id,
-                name: user.name,
-                email: user.email,
-                avatarUrl: user.avatarUrl,
-              ));
-      //=========================================
+        id,
+        () => User(
+          id: id,
+          name: user.name,
+          email: user.email,
+          avatarUrl: user.avatarUrl,
+        ),
+      );
     }
     //notifica a tela:
     notifyListeners();
@@ -59,7 +59,6 @@ class Users with ChangeNotifier {
   void remove(User user) {
     if (user == null && user.id != null) {
       _itens.remove(user.id);
-
       //notifica a tela:
       notifyListeners();
     }

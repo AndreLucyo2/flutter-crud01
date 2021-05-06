@@ -9,14 +9,18 @@ class UserList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //lista de objetos usando o provider:
+    //lista de objetos usando o provider: Este Provider é notificado e avisa a tela
+    //Escuta as alteraçoes dentro de Users
     final Users users = Provider.of(context);
 
+    //==================================================================
     return Scaffold(
       appBar: AppBar(
         title: Text('Lista de Usuarios'),
         //botão no appbar:
         actions: <Widget>[
+          //------------------------------------------------
+          //Botão add
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
@@ -28,7 +32,9 @@ class UserList extends StatelessWidget {
           )
         ],
       ),
-      //lista objetos:
+      //-------------------------------------------------------------
+      //listagem de tiles: tijolinho de users
+      //-------------------------------------------------------------
       body: ListView.builder(
         //aumenta conforme a lista de entrada
         itemCount: users.count,
