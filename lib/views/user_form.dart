@@ -9,8 +9,30 @@ class UserForm extends StatelessWidget {
   //cria um map para pegar os valores dos campos da tela e pessar par o objeto
   final Map<String, String> _formData = {};
 
+  //pegar os dados do objeto selecionado e passar para o MAP:
+  void _loadFormData(User user) {
+    //valida esta editando o objeto
+    if (user != null) {
+      _formData['id'] = user.id;
+      _formData['name'] = user.name;
+      _formData['email'] = user.email;
+      _formData['avatarUrl'] = user.avatarUrl;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    //Recebe o objeto, argumento vindo do tile la do Navigator do UserTile
+    //Tijolinho selecionado
+    final User user = ModalRoute.of(context).settings.arguments;
+
+    //teste de Debug Console:
+    print(user.name);
+
+    //pega os dados do usuario e passa para o MAP
+    _loadFormData(user);
+
+    //======================================================
     return Scaffold(
       appBar: AppBar(
         title: Text('cadstro de usuario'),
@@ -51,6 +73,9 @@ class UserForm extends StatelessWidget {
           child: Column(
             children: <Widget>[
               TextFormField(
+                //Vincular o MAP ao campo correspondente:
+                initialValue: _formData['name'],
+                //Label do campo:
                 decoration: InputDecoration(labelText: 'Nome'),
                 validator: (value) {
                   // validação específica de cada campo:
@@ -68,6 +93,9 @@ class UserForm extends StatelessWidget {
                 onSaved: (value) => _formData['name'] = value,
               ),
               TextFormField(
+                //Vincular o MAP ao campo correspondente:
+                initialValue: _formData['email'],
+                //Label do campo:
                 decoration: InputDecoration(labelText: 'E-mail'),
                 validator: (value) {
                   // validação específica de cada campo:
@@ -85,6 +113,9 @@ class UserForm extends StatelessWidget {
                 onSaved: (value) => _formData['email'] = value,
               ),
               TextFormField(
+                //Vincular o MAP ao campo correspondente:
+                initialValue: _formData['avatarUrl'],
+                //Label do campo:
                 decoration: InputDecoration(labelText: 'Url Avatar'),
                 //Pega o valor do campo e guarda no Map:
                 onSaved: (value) => _formData['avatarUrl'] = value,
