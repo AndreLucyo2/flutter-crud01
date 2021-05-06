@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
           ),
           //definir as rotas:
           routes: {
+            //tela home:
             AppRoutes.HOME: (_) => UserList(),
             AppRoutes.USER_FORM: (_) => UserForm()
           },
