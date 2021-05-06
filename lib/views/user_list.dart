@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_crud_1/compoments/user_tile.dart';
-import 'package:flutter_crud_1/models/user.dart';
 import 'package:flutter_crud_1/provider/users.dart';
+import 'package:flutter_crud_1/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 
 class UserList extends StatelessWidget {
@@ -20,9 +20,10 @@ class UserList extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              //teste user fixo:
-              users.put(User(
-                  name: 'Andre Carlos', email: 'www@www.com', avatarUrl: ''));
+              //passar a rota para o navegador: o push ja vem o o btn voltar
+              Navigator.of(context).pushNamed(
+                AppRoutes.USER_FORM,
+              );
             },
           )
         ],

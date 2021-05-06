@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_crud_1/models/user.dart';
+import 'package:flutter_crud_1/routes/app_routes.dart';
 
 class UserTile extends StatelessWidget {
   final User user;
@@ -29,7 +30,14 @@ class UserTile extends StatelessWidget {
                 //Botão editar
                 icon: Icon(Icons.edit),
                 color: Colors.blue,
-                onPressed: () {},
+                onPressed: () {
+                  //passar a rota para o navegador: o push ja vem o o tbn voltar
+                  Navigator.of(context).pushNamed(
+                    AppRoutes.USER_FORM,
+                    //ja passo o usuario selecionado para a tela do form
+                    arguments: user,
+                  );
+                },
               ),
               //Botão deletar
               IconButton(
