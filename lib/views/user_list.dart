@@ -38,7 +38,7 @@ class UserList extends StatelessWidget {
       body: ListView.builder(
         //aumenta conforme a lista de entrada
         itemCount: users.count,
-        //itera entre os elementos e retorna o objeto leo indice:
+        //itera entre os elementos e retorna o objeto pelo indice:
         itemBuilder: (ctx, i) => UserTile(users.byIndex(i)),
       ),
     );

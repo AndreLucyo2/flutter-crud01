@@ -82,7 +82,7 @@ class UserTile extends StatelessWidget {
                     //conforme o retorno do Dialog modal executa a ação:
                     if (confirmou) {
                       //Provider para remover:
-                      Provider.of<Users>(context).remove(user);
+                      Provider.of<Users>(context, listen: true).remove(user);
                     }
                   });
                 },
